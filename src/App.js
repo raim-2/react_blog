@@ -8,7 +8,6 @@ function App() {
   let [글제목, 글제목변경] = useState(['남자코트 추천', '강남 우동맛집', '파이썬독학']);
   let [좋아요, 좋아요변경] = useState([0,0,0]);
   let [modal, setModal] = useState(false);
-  
 
   return (
     <div className="App">
@@ -21,33 +20,6 @@ function App() {
         copy2.sort();
         글제목변경(copy2);
       }}>가나다순정렬</button>
-
-      {/* <div className="list">
-        <h4>{글제목[0]} <span onClick={
-           () => {
-            let good = [...좋아요];
-            good[0] = good[0] + 1;
-            좋아요변경(good)
-            } }>👍</span> {좋아요[0]} </h4>
-        <p>2월 17일 발행</p>
-      </div>
-      <div className="list">
-        <h4>{글제목[1]}<span onClick={ () => {
-          let good2 = [...좋아요];
-          good2[1] = good2[1] + 1;
-          좋아요변경(good2)} }>👍</span> {좋아요[1]} </h4>
-        <p>2월 17일 발행</p>
-      </div>
-      <div className="list">
-        <h4>{글제목[2]}<span onClick={ () => {
-          let good3 = [...좋아요];
-          good3[2] = good3[2] + 1;
-          좋아요변경(good3)} }>👍</span> {좋아요[2]} </h4>
-        <p  style={{display:'inline-block', marginRight: '10px'}}>2월 17일 발행</p>
-        <button onClick={ ()=> {
-        modal == false ? setModal(true) : setModal(false)
-        }}>모달버튼</button>
-      </div> */}
 
       {
         글제목.map(function(a,i){
@@ -70,19 +42,25 @@ function App() {
 
 
       {
-        modal == true ? <Modal/> : null
+        // modal == true ? <Modal color={'pink'} 글제목={글제목}/> : null
+         modal == true ? <Modal color='pink' 글제목={글제목} 글제목변경={글제목변경}/> : null
       }
     </div>
   );
 }
 
 //컴포넌트 
-function Modal() {
+function Modal(props) {
   return (
-    <div className='modal'>
-      <h4>제목</h4>
+    <div className='modal' style={{background : props.color}}>
+      <h4>{props.글제목[0]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      <button onClick={()=> {
+        let copy = [...props.글제목];
+        copy[0] = '여자코트 추천';
+        props.글제목변경(copy)
+        }}>글수정버튼</button>
     </div> 
   )
 }

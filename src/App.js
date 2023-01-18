@@ -22,7 +22,7 @@ function App() {
         글제목변경(copy2);
       }}>가나다순정렬</button>
 
-      <div className="list">
+      {/* <div className="list">
         <h4>{글제목[0]} <span onClick={
            () => {
             let good = [...좋아요];
@@ -47,16 +47,18 @@ function App() {
         <button onClick={ ()=> {
         modal == false ? setModal(true) : setModal(false)
         }}>모달버튼</button>
-      </div>
+      </div> */}
 
-      {/* {
+      {
         글제목.map(function(a,i){
           return (
             <div className="list" key={i}>
               <h4 onClick = { () => {setModal(!modal)}} > 
                 {글제목[i]}
                   <span onClick={ () => {
-                   좋아요변경(좋아요[i]+1);
+                    let good = [...좋아요];
+                    good[i] = good[i] + 1;
+                   좋아요변경(good);
                   } }>👍</span> 
                {좋아요[i]}
               </h4>
@@ -64,7 +66,7 @@ function App() {
             </div>
           )
         })
-      } */}
+      }
 
 
       {
